@@ -1,0 +1,11 @@
+{
+  "name": "nest-services",
+  "version": "0.0.1",
+  "description": "",
+  "author": "heart",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
