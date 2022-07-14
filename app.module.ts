@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AcademicMagicController } from 'src/controllers/academicMagic.controller';
+import { AcademicMagicModule } from 'src/modules/academicMagic.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,7 +28,7 @@ import { AcademicMagicController } from 'src/controllers/academicMagic.controlle
       inject: [ConfigService],
     }),
     // 存放其他的modules
-    AcademicMagicController,
+    AcademicMagicModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
