@@ -1,5 +1,6 @@
 var http = require('http');
-var { readEnvFile } = require('../utils/readEnvFile.cjs');
+var { readEnvFile } = require('./utils/readEnvFile.cjs');
+var { isProduction } = require('./constant/index');
 
 const envObject = readEnvFile(
   process.cwd() + `/.${isProduction ? 'production' : 'development'}.env`,
