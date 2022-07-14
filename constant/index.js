@@ -1,5 +1,5 @@
-const isProduction = false;
+const isProduction = false
 
 module.exports = {
   isProduction,
-};
+}
