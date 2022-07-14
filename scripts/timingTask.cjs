@@ -9,7 +9,7 @@ var { requestTimingTask, cancelTimingTask } = require('../utils/taskLoop.cjs')
 var { readEnvFile } = require('../utils/readEnvFile.cjs')
 var { isProduction } = require('../constant/index')
 // 魔方签到任务： 一个星期一次 每天一次
-const oneDayTimer = 1000 * 60 * 24
+const oneDayTimer = 1000 * 60 * 60 * 24
 function academicMagicSign() {
   const date = new Date()
   if (date.getDay() !== 1) {
