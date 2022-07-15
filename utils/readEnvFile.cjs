@@ -4,7 +4,7 @@
  * @Date 2022-05-30
  */
 var fs = require('fs')
-
+var { logger } = require('./logger.cjs')
 // 以逗号为分隔符 将前面的和后面的字符串截取出来  匹配由逗号前面的字符组成的字符串
 const reg = /(?:^(.*?)=(.*))/gm
 // 删除注释
@@ -19,7 +19,7 @@ function readEnvFileSync(path = process.cwd() + '/.env', obj) {
         obj[RegExp.$1.trim()] = RegExp.$2.trim().replace(/'|"/g, '')
     }
   } catch (e) {
-    console.log(e)
+    logger.info(e)
     throw new Error(e.message)
   }
 }

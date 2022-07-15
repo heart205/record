@@ -4,6 +4,7 @@
  * @Date 2022-07-14
  */
 
+var { logger } = require('./logger.cjs')
 const isHaveMap = function () {
   return typeof Map !== 'undefined'
 }
@@ -11,7 +12,7 @@ const isHaveMap = function () {
 let taskList
 
 function addTimingTask(callback, timer) {
-  console.log('添加定时任务')
+  logger.info('添加定时任务')
   const timeoutFlag = setInterval(() => {
     callback instanceof Function && callback()
     cancelTimingTask()
@@ -22,7 +23,7 @@ function addTimingTask(callback, timer) {
 }
 
 function cancelTimingTask(callback) {
-  console.log('取消定时任务')
+  logger.info('取消定时任务')
   if (isHaveMap()) {
     clearInterval(taskList.get(callback))
     taskList.delete(callback)

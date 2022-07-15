@@ -1,7 +1,7 @@
 var http = require('http')
 var { readEnvFile } = require('./utils/readEnvFile.cjs')
 var { isProduction } = require('./constant/index')
-
+var { logger } = require('./utils/logger.cjs')
 const envObject = readEnvFile(
   process.cwd() + `/.${isProduction ? 'production' : 'development'}.env`,
 )
@@ -13,16 +13,16 @@ const req = http.request(`${envObject.baseUrl}`, (res) => {
   })
 
   res.on('end', function () {
-    console.log('http.request end data:', data.toString())
+    logger.info('http.request end data:', data.toString())
   })
 })
 
 req.on('error', (e) => {
-  console.error(`problem with request: ${e.message}`)
+  logger.error(`problem with request: ${e.message}`)
 })
 
 req.end()
 
 // 请求今天是周几
 const date = new Date()
-console.log(date.getDay())
+logger.info(date.getDay())
