@@ -1,4 +1,4 @@
-import { AcademicMagicEntity } from 'src/entity/academicMagic.entity';
+import { AcademicMagicEntity } from 'src/entity/academicMagic.entity'
 
 export type signInfo = {
   [k in keyof AcademicMagicEntity as k extends 'formId'
@@ -11,5 +11,5 @@ export type signInfo = {
     ? 'formId'
     : k extends 'form_id'
     ? 'formDataId'
-    : k];
-};
+    : k]
+}

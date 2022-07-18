@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { BaseResponseCode } from 'src/constant/code';
-import { BaseResponse } from 'src/utils/baseResponse';
-import { Repository } from 'typeorm';
-import { AcademicMagicEntity } from '../../entity/academicMagic.entity';
-import type { signInfo } from './utils/declareType';
-import { magicSign } from './utils/signRequest';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { BaseResponseCode } from 'src/constant/code'
+import { BaseResponse } from 'src/utils/baseResponse'
+import { Repository } from 'typeorm'
+import { AcademicMagicEntity } from '../../entity/academicMagic.entity'
+import type { signInfo } from './utils/declareType'
+import { magicSign } from './utils/signRequest'
 @Injectable()
 export class AcademicMagicService {
   constructor(
@@ -19,9 +19,9 @@ export class AcademicMagicService {
         where: {
           id: userId,
         },
-      });
+      })
     } catch (e) {
-      console.log('searchUser id: %d Error: %d', userId, e.message);
+      console.log('searchUser id: %d Error: %d', userId, e.message)
     }
   }
 
@@ -37,38 +37,38 @@ export class AcademicMagicService {
       'formdata[fn_6]': '',
       'formdata[gps_addr]': '',
       'formdata[gps_xy]': '',
-    };
+    }
     Object.keys(signInformation).reduce((pre, cur: string) => {
       if (cur === 'formId') {
-        pre['form_id'] = signInformation[cur];
+        pre['form_id'] = signInformation[cur]
       } else if (cur === 'formDataId') {
-        pre['formid'] = signInformation[cur];
+        pre['formid'] = signInformation[cur]
       } else if (/formdata/.test(cur)) {
-        pre[cur] = signInformation[cur];
+        pre[cur] = signInformation[cur]
       }
-      return pre;
-    }, data);
+      return pre
+    }, data)
 
     // 请求接口 签到
     try {
-      return await magicSign(signInformation.cookie, data);
+      return await magicSign(signInformation.cookie, data)
     } catch (e) {
-      console.log('sign error: ' + e.message);
+      console.log('sign error: ' + e.message)
     }
   }
 
   async academicMagicSign(params: {
-    id: number;
+    id: number
   }): Promise<BaseResponse<null> | boolean> {
     try {
-      const academicMagicUserInfo = await this.searchUser(params.id);
+      const academicMagicUserInfo = await this.searchUser(params.id)
       if (academicMagicUserInfo === null) {
-        return new BaseResponse(BaseResponseCode.Error, '查询用户为空');
+        return new BaseResponse(BaseResponseCode.Error, '查询用户为空')
       } else {
-        return await this.magicSign(academicMagicUserInfo);
+        return await this.magicSign(academicMagicUserInfo)
       }
     } catch (e) {
-      console.log('academicMagicSign', e.message);
+      console.log('academicMagicSign', e.message)
     }
   }
 }

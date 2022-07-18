@@ -23,17 +23,20 @@ function academicMagicSign() {
   )
 
   logger.info(`${envObject.baseUrl}`)
-  const req = http.request(`${envObject}/sign/magicSign?id=1`, (res) => {
-    let data = ''
+  const req = http.request(
+    `${envObject.baseUrl}/sign/magicSign?id=1`,
+    (res) => {
+      let data = ''
 
-    res.on('data', function (chunk) {
-      data += chunk
-    })
+      res.on('data', function (chunk) {
+        data += chunk
+      })
 
-    res.on('end', function () {
-      logger.info('魔方签到请求结束:', data.toString())
-    })
-  })
+      res.on('end', function () {
+        logger.info('魔方签到请求结束:', data.toString())
+      })
+    },
+  )
 
   req.on('error', (e) => {
     logger.error(`魔方签到请求错误: ${e.message}`)
@@ -43,6 +46,7 @@ function academicMagicSign() {
 }
 
 function addAcademicMagicSign() {
+  academicMagicSign()
   requestTimingTask(academicMagicSign, oneDayTimer)
 }
 
