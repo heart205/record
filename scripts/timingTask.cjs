@@ -22,7 +22,7 @@ function academicMagicSign() {
     process.cwd() + `/.${isProduction ? 'production' : 'development'}.env`,
   )
 
-  logger.info(`${envObject.baseUrl}`)
+  logger.info(`基本地址:${envObject.baseUrl}`)
   const req = http.request(
     `${envObject.baseUrl}/sign/magicSign?id=1`,
     (res) => {
