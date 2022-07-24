@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AcademicMagicModule } from 'src/modules/academicMagic.module';
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { AcademicMagicModule } from 'src/modules/academicMagic.module'
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,7 +23,7 @@ import { AcademicMagicModule } from 'src/modules/academicMagic.module';
           entities: ['dist/**/*.entity.js'],
           synchronize: true,
           logging: false,
-        };
+        }
       },
       inject: [ConfigService],
     }),

@@ -12,7 +12,7 @@ const isHaveMap = function () {
 let taskList
 
 function addTimingTask(callback, timer) {
-  logger.info('添加定时任务')
+  logger.info('添加定时任务', taskList)
   const timeoutFlag = setInterval(() => {
     callback instanceof Function && callback()
     cancelTimingTask()
