@@ -1,6 +1,6 @@
-import * as http from 'http';
-import * as queryString from 'querystring';
-import type { signInfo } from './declareType';
+import * as http from 'http'
+import * as queryString from 'querystring'
+import type { signInfo } from './declareType'
 
 export function magicSign(cookie: string, form: signInfo): Promise<boolean> {
   return new Promise((resolve) => {
@@ -16,19 +16,19 @@ export function magicSign(cookie: string, form: signInfo): Promise<boolean> {
         Cookie: cookie,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-    };
+    }
     const req = http.request(optionsAjax, (res) => {
-      let data = '';
+      let data = ''
       res.on('data', (chunk) => {
-        data += chunk;
-      });
+        data += chunk
+      })
       res.on('end', () => {
-        console.log('sign data', data);
-        resolve(true);
-      });
-    });
+        console.log('sign data', data)
+        resolve(true)
+      })
+    })
 
-    req.write(queryString.stringify(form));
-    req.end();
-  });
+    req.write(queryString.stringify(form))
+    req.end()
+  })
 }
